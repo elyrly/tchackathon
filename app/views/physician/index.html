@@ -1,0 +1,23 @@
+<html>
+  <ul class="nav nav-tabs col-md-offset-1" role="tablist">
+    <li>
+    <a> <span class="glyphicon glyphicon-home"></span></a>
+    </li>
+    <li>
+      <a href="#">Home</a>
+    </li>
+    <li>
+      <a href="/medicine">Medicine List</a>
+    </li>
+    <li>
+      <% if user_signed_in? %>
+        Logged in as <strong><%= current_user.email %></strong>.
+        <%= link_to 'Edit profile', edit_user_registration_path, class: "login_button"  %> |
+        <%= link_to "Logout", destroy_user_session_path, class: "login_button", method: :delete %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, class: "login_button" %> |
+        <%= link_to "Login", new_user_session_path, class: "login_button" %>
+      <% end %>
+  </ul>
+
+</html>

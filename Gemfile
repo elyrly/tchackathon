@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'protected_attributes'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 
@@ -31,6 +32,13 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+gem 'devise'
+gem 'ratchet-rails', '~> 0.0.3'
+gem 'ratchet-sass', '~> 2.0.2'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'roo'
+gem 'surveyor',:git => "git://github.com/NUBIC/surveyor.git"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
