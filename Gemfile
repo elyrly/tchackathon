@@ -39,6 +39,8 @@ gem 'ratchet-sass', '~> 2.0.2'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'roo'
 gem 'surveyor',:git => "git://github.com/NUBIC/surveyor.git"
+gem 'twilio-ruby'
+gem 'pry'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
