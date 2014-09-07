@@ -9,6 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require ratchet
+ *= require ratchet.min
+ *= require bootstrap
+ *= require bootstrap.min
  *= require_tree .
  */
 
@@ -36,4 +40,13 @@
   height: auto;
   margin-bottom: 15px;
   padding: 7px 9px;
+}
+
+
+video#bgvid {
+right: 0; bottom: 0;
+min-width: 100%; min-height: 100%;
+width: auto; height: auto; z-index: -100;
+background: url(polina.jpg) no-repeat;
+background-size: cover;
 }

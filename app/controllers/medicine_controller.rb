@@ -31,6 +31,6 @@ class MedicineController < ApplicationController
     end
     clear_database(Medicine)
     Medicine.import(params[:file])
-    redirect_to root_url
+    redirect_to drug_list_path
   end
 end

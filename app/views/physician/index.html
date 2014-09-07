@@ -13,11 +13,23 @@
       <% if user_signed_in? %>
         Logged in as <strong><%= current_user.email %></strong>.
         <%= link_to 'Edit profile', edit_user_registration_path, class: "login_button"  %> |
-        <%= link_to "Logout", destroy_user_session_path, class: "login_button", method: :delete %>
+        <%= link_to "Logout", destroy_user_session_path, class: "login_button", :method => :delete %>
       <% else %>
         <%= link_to "Sign up", new_user_registration_path, class: "login_button" %> |
         <%= link_to "Login", new_user_session_path, class: "login_button" %>
       <% end %>
   </ul>
+
+  <video autoplay loop poster="pwcvideo.png" id="bgvid">
+<source src="245640792.mp4" type="video/mp4">
+</video>
+
+<script>
+jQuery( document ).ready(function($) {
+    $('#bgvid').click(function() {
+        $(this).get(0).paused ? $(this).get(0).play() : $(this).get(0).pause();
+    });
+});
+</script>
 
 </html>

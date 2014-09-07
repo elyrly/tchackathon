@@ -4,6 +4,12 @@ class Medicine < ActiveRecord::Base
   attr_accessible :drug_name, :brand
   validates :drug_name, presence: true
   validates :brand, presence: true
+  has_many :education
+  has_many :indication
+  has_many :final_indication
+  has_many :other_education
+  has_many :medicines_session
+  has_and_belongs_to_many :sessions
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|

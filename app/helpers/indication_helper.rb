@@ -1,0 +1,2 @@
+module IndicationHelper
+end

@@ -1,0 +1,75 @@
+<header class="bar bar-nav">
+  <button class="btn btn-link btn-nav pull-left" href="medicine">
+    <span class="icon icon-left-nav"></span>
+    <%= link_to "Back", drug_list_path %>
+  </button>
+  <button class="btn btn-link btn-nav pull-right">
+      <%= link_to "Medicine List", drug_list_path %>
+    <span class="icon icon-right-nav"></span>
+  </button>
+
+  <h1 class="title">Session <%= @session.id %>: <%= @session.medicines.count %> drugs</h1>
+</header>
+
+<div class="content">
+    <% if !@session.started? then %>
+      <button id="start_time" type="submit" class="btn btn-block btn-success">Start timing the education time</button>
+    <% end %>
+      <button id="stop_time" type="submit" class="btn btn-block btn-danger hidden">Stop timing the education time</button>
+    <% if @session.started? then %>
+      <button id="stop_time" type="submit" class="btn btn-block btn-danger">Stop timing the education time</button>
+    <% end %>
+  <% @session.medicines.each do |m| %>
+    <button class="btn btn-block btn-primary">Generic Drug Name: <%= m.drug_name %></button>
+    <button class="btn btn-block btn-default">Brand Drug Name: <%= m.brand %></button>
+    <h5 align="middle" > Indications </h1>
+    <ul class="table-view">
+      <% for item in m.indication.all %>
+          <li class="table-view-cell media">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+               <%= item.content%>
+            </div> </li>
+      <% end %>
+    </ul>
+    <h5 align="middle" > Education points </h1>
+    <ul class="table-view">
+      <% for item in m.education.all %>
+      <li class="table-view-cell media">
+        <img class="media-object pull-left" src="http://placehold.it/42x42">
+        <div class="media-body">
+           <%= item.content %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+    <% if !m.other_education.all.empty? then %>
+      <h5 align="middle"> Other education points </h1>
+    <% end %>
+    <ul class="table-view">
+      <% for item in m.other_education.all %>
+      <li class="table-view-cell media">
+        <img class="media-object pull-left" src="http://placehold.it/42x42">
+        <div class="media-body">
+           <%= item.content %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<script>
+  $("#start_time").click(function(event){
+    alert("Great! Time recorded!");
+    var session_id = "<%=params[:medical_session]%>";
+    $.get("/session/" + session_id + "/start_time");
+    $("#start_time").hide();
+    $("#stop_time").removeClass('hidden')
+  });
+  $("#stop_time").click(function(event){
+    alert("Great! Stop session!");
+    var session_id = "<%=params[:medical_session]%>";
+    $.get("/session/" + session_id + "/stop_time");
+  });
+</script>

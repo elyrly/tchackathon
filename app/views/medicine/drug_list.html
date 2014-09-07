@@ -1,0 +1,52 @@
+<header class="bar bar-nav">
+  <button class="btn btn-link btn-nav pull-left">
+    <span class="icon icon-left-nav"></span>
+    <%= link_to "Back", :controller => "physician", :action => "index" %>
+  </button>
+  <h1 class="title">Title</h1>
+</header>
+<div class="content">
+<ul class="table-view">
+  <%= form_tag new_session_path, id: "session", method:"post" do %>
+    <input id="submit" type="submit" value="Start a Session!">
+    <% for m in Medicine.all %>
+    <li onclick="click_drug(this, id);" class="table-view-cell active">
+      <img class="media-object pull-left" src="/Drug ID 1.png">
+        <%= m.drug_name %>
+        <%= check_box_tag("medicine[#{m.id}]") %>
+    </li>
+    <% end %>
+  <% end %>
+</ul>
+</div>
+
+<script>
+  $(function() {
+    $('#session').data('serialize',$('#session').serialize());
+  });
+
+  function click_drug(el, id){
+   inp = $(el).find("input");
+   inp.prop("checked", !inp.prop("checked"));
+  };
+
+  $('li input[type=checkbox]').on("click", function(){
+    $(this).prop("checked", !$(this).prop("checked"));
+  });
+
+  function formchanged(){
+    form_clean = $('#session').serialize()
+    if($('#session').serialize()!=$('#session').data('serialize')){
+        // Form has changed!!!
+        return (true);
+        }
+        return (false);
+  }
+  $('#session').submit(function(event){
+    if (formchanged()==false ) {
+        event.preventDefault();
+        alert("Please choose a drug");
+    }
+  });
+
+</script>
